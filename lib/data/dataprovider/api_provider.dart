@@ -1,11 +1,21 @@
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 
 class ApiProvider{
-  //
-  static const _baseUrl = 'https://bd.ezassist.me/ws/mpFeed?instanceName=bd.ezassist.me';
+
+  final Dio dio = Dio(BaseOptions(
+    baseUrl: 'https://devportal.flipper.com.bd/api/v1',
+    connectTimeout: 5000,
+    receiveTimeout: 3000,
+    headers: {
+      "X-Authorization" : "1y8eGr8r75OOp2D4aMtbsDe6RJbONQL6iIOdH67COieqflQUBu52xTMFgBa6VJdE"
+    }
+  ));
+
+  //static const _baseUrl = 'https://bd.ezassist.me/ws/mpFeed?instanceName=bd.ezassist.me';
   
   /*Future<dynamic> fetchFeaturedSeller() async {
     Uri uri = Uri.parse("$_baseUrl&opt=trending_seller");
@@ -36,5 +46,10 @@ class ApiProvider{
     Response response = await http.get(uri);
     return jsonDecode(response.body);
   }*/
+
+  fetchHomeData() async{
+    var response = await dio.get("/product-categories");
+    print(response.data);
+  }
 
 }

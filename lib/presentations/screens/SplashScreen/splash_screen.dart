@@ -17,7 +17,7 @@ class _SplashPageState extends State<SplashPage> {
     // TODO: implement initState
     super.initState();
     Future.delayed(Duration(seconds: 2)).then((value) {
-      Navigator.pushNamed(context, '/home',arguments: PageRouteArguments(
+      Navigator.popAndPushNamed(context, '/home',arguments: PageRouteArguments(
         toPage: "/home",
         fromPage: "/splash",
         data: ["data for home"],
