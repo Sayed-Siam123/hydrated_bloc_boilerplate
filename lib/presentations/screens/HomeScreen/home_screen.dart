@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydrated_bloc_boilerplate/data/Model/page_route_arguments.dart';
 import 'package:hydrated_bloc_boilerplate/presentations/base_widget.dart';
+import 'package:hydrated_bloc_boilerplate/presentations/screens/HomeScreen/HomeBloc/home_bloc.dart';
+import 'package:hydrated_bloc_boilerplate/presentations/screens/HomeScreen/HomeBloc/home_state.dart';
 import 'package:hydrated_bloc_boilerplate/presentations/screens/LoginScreen/AuthBloc/auth_bloc.dart';
 import 'package:provider/src/provider.dart';
+
+import 'HomeBloc/home_event.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key, this.data}) : super(key: key);
@@ -30,42 +35,37 @@ class _HomePageState extends State<HomePage> {
       });
     }
 
+    context.read<HomeBloc>().add(FetchTime());
+
   }
 
   @override
   Widget build(BuildContext context) {
-    return BaseWidget(
-      builder: (context, sizingInformation) => Scaffold(
-        appBar: AppBar(),
-        body: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(email.toString()),
-              Text(widget.data!.fromPage.toString()),
-              Text(widget.data!.data![0].toString()),
+    return BlocConsumer<HomeBloc,HomePageState>(
+      listener: (context, state) {
 
-              MaterialButton(
-                onPressed: (){
-                  context.read<AuthBloc>().add(Logout());
+      },
+      builder: (context, state) {
+        return BaseWidget(
+          builder: (context, sizingInformation) => Scaffold(
+            appBar: AppBar(),
+            body: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(email.toString()),
+                  Text(widget.data!.fromPage.toString()),
+                  Text(widget.data!.data![0].toString()),
 
-                  Navigator.popAndPushNamed(context, '/login',arguments: PageRouteArguments(
-                    toPage: "/login",
-                    fromPage: "/home",
-                    data: ["data for login"],
-                  ));
+                  (state is HomeTimeLoaded) ? Text(state.data!.time.toString()) : Text("Default")
 
-
-                },
-                color: Colors.blue,
-                child: const Text("Logout",style: TextStyle(color: Colors.white),),
+                ],
               ),
-
-            ],
+            ),
           ),
-        ),
-      ),
+        );
+      }
     );
   }
 }
