@@ -21,6 +21,7 @@ class HomeBloc extends Bloc<HomeEvents, HomePageState> with HydratedMixin{
     });
   }
 
+
   @override
   HomePageState? fromJson(Map<String, dynamic> json) {
     // TODO: implement fromJson
