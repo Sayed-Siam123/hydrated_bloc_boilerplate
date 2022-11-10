@@ -13,11 +13,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState>{
   LoginBloc() : super(LoginInitial()){
 
     on<GetLogin>((event, emit) async{
-      if (event is GetLogin) {
-        emit(LoginLoading());
-        await Future.delayed(Duration(seconds: 2));
-        emit(LoginSuccessful(user: event.user));
-      }
+      emit(LoginLoading());
+      await Future.delayed(Duration(seconds: 2));
+      emit(LoginSuccessful(user: event.user));
     });
   }
 

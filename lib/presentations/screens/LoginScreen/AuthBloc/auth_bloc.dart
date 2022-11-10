@@ -31,7 +31,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with HydratedMixin{
   @override
   AuthState? fromJson(Map<String, dynamic> json) {
     try{
-
       final user = User.fromJson(json);
       return UserAuthenticate(user: user);
 

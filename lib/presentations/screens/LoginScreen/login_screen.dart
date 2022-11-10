@@ -43,7 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     onChanged: (String? value){},
                     // valueTransformer: (text) => num.tryParse(text),
                     validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.required(context),
+                      FormBuilderValidators.required(),
                     ]),
                     keyboardType: TextInputType.text,
                   ),
@@ -59,7 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     onChanged: (String? value){},
                     // valueTransformer: (text) => num.tryParse(text),
                     validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.required(context),
+                      FormBuilderValidators.required(),
                     ]),
                     keyboardType: TextInputType.text,
                   ),
@@ -75,7 +75,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     onChanged: (String? value){},
                     // valueTransformer: (text) => num.tryParse(text),
                     validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.required(context),
+                      FormBuilderValidators.required(),
                     ]),
                     keyboardType: TextInputType.text,
                   ),

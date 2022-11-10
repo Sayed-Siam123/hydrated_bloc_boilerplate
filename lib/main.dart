@@ -18,15 +18,19 @@ void main() async {
     storageDirectory: await getTemporaryDirectory(),
   );
 
-  HydratedBlocOverrides.runZoned(() =>
-      runApp(DevicePreview(
-        enabled: !kReleaseMode,
-        builder: (context) =>
-            MyApp(appRouter: AppRouter(),
-              connectivity: Connectivity(),), // Wrap your app
-      ),),
-    storage: storage,
+
+  HydratedBloc.storage = await HydratedStorage.build(
+    storageDirectory: kIsWeb
+        ? HydratedStorage.webStorageDirectory
+        : await getTemporaryDirectory(),
   );
+
+  runApp(DevicePreview(
+    enabled: !kReleaseMode,
+    builder: (context) =>
+        MyApp(appRouter: AppRouter(),
+          connectivity: Connectivity(),), // Wrap your app
+  ),);
 }
 
 class MyApp extends StatelessWidget {
@@ -41,7 +45,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-
         BlocProvider<AuthBloc>(
           create: (context) => AuthBloc(),
         ),
