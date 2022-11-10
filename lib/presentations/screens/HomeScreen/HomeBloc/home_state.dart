@@ -1,9 +1,11 @@
 import 'package:equatable/equatable.dart';
 
+import '../../../../data/Model/HomeDataModel/HomeData.dart';
+
 class HomePageState extends Equatable {
   @override
   // TODO: implement props
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [];
 }
 
 class HomePageInitState extends HomePageState {}
@@ -18,3 +20,10 @@ class HomePageListError extends HomePageState {
   final error;
   HomePageListError({this.error});
 }
+
+class HomeTimeLoading extends HomePageState {}
+class HomeTimeLoaded extends HomePageState {
+  HomeData? data;
+  HomeTimeLoaded({this.data});
+}
+class HomeTimeLoadingError extends HomePageState {}

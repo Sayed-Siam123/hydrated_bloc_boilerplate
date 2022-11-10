@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 abstract class HomeEvents {}
 
 class FetchHomeData extends HomeEvents {}
+class FetchTime extends HomeEvents {}
 class GetData extends HomeEvents {
   final int? id;
   GetData(this.id);
