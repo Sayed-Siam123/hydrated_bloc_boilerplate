@@ -1,5 +1,4 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,9 +13,9 @@ import 'data/dataprovider/api_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final storage = await HydratedStorage.build(
-    storageDirectory: await getTemporaryDirectory(),
-  );
+  // final storage = await HydratedStorage.build(
+  //   storageDirectory: await getTemporaryDirectory(),
+  // );
 
 
   HydratedBloc.storage = await HydratedStorage.build(
@@ -25,12 +24,10 @@ void main() async {
         : await getTemporaryDirectory(),
   );
 
-  runApp(DevicePreview(
-    enabled: !kReleaseMode,
-    builder: (context) =>
-        MyApp(appRouter: AppRouter(),
-          connectivity: Connectivity(),), // Wrap your app
-  ),);
+  runApp(MyApp(
+      appRouter: AppRouter(),
+      connectivity: Connectivity()
+  ));
 }
 
 class MyApp extends StatelessWidget {

@@ -8,8 +8,8 @@ class ApiProvider{
 
   final Dio dio = Dio(BaseOptions(
     baseUrl: 'https://devportal.flipper.com.bd/api/v1',
-    connectTimeout: 5000,
-    receiveTimeout: 3000,
+    connectTimeout: Duration(milliseconds: 5000),
+    receiveTimeout: Duration(milliseconds: 3000),
     headers: {
       "X-Authorization" : "1y8eGr8r75OOp2D4aMtbsDe6RJbONQL6iIOdH67COieqflQUBu52xTMFgBa6VJdE"
     }
