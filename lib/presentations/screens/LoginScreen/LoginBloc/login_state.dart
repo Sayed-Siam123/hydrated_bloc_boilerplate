@@ -18,11 +18,11 @@ class LoginLoading extends LoginState{
 
 class LoginSuccessful extends LoginState{
   final User? user;
-  LoginSuccessful({this.user});
+  const LoginSuccessful({this.user});
 
   @override
   // TODO: implement props
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [user];
 }
 
 

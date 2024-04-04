@@ -34,8 +34,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with HydratedMixin{
       final user = User.fromJson(json);
       return UserAuthenticate(user: user);
 
-    } catch(_){
-      return UserUnAuthenticate();
+    } catch(e){
+      return null;
     }
   }
 

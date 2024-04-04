@@ -9,10 +9,10 @@ class UserAuthenticate extends AuthState {
 
   final User? user;
 
-  UserAuthenticate({this.user});
+  const UserAuthenticate({this.user});
 
   @override
-  List<dynamic> get props => [];
+  List<dynamic> get props => [user];
 }
 
 
