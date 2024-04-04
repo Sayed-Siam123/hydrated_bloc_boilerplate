@@ -58,7 +58,30 @@ class _HomePageState extends State<HomePage> {
                   Text(widget.data!.fromPage.toString()),
                   Text(widget.data!.data![0].toString()),
 
-                  (state is HomeTimeLoaded) ? Text(state.data!.time.toString()) : Text("Default")
+                  (state is HomeTimeLoaded) ? Text(state.data!.time.toString()) : Text("Default"),
+
+                  SizedBox(height: 300,),
+
+                  BlocBuilder(
+                    bloc: context.read<AuthBloc>(),
+                    builder: (context, state) {
+                      Widget widget = SizedBox();
+                      if(state is UserAuthenticate){
+                        widget = ElevatedButton(
+                          onPressed: () {
+                            context.read<AuthBloc>().add(Logout());
+                            Navigator.popAndPushNamed(context, '/login',arguments: PageRouteArguments(
+                              toPage: "/login",
+                              fromPage: "/home",
+                              data: ["data for login"],
+                            ));
+                          },
+                          child: Text("Logout"),
+                        );
+                      }
+                      return widget;
+                    },
+                  ),
 
                 ],
               ),

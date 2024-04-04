@@ -21,7 +21,7 @@ dependencies:
 #  device_preview: ^1.1.0
 #  hydrated_bloc: ^9.1.5
   hydrated_bloc: 9.1.2
-  # need to use hydrated bloc 9.1.2 because after 9.1.2, state persisting is not working
+  # need to use hydrated bloc 9.1.2 because after v9.1.2, state persisting is not working, its a bug
   easy_splash_screen: ^1.0.4
   path_provider: ^2.1.2
   dio: ^5.4.2+1
